@@ -4,6 +4,7 @@ const cors = require('cors')
 
 app.use(express.json())
 app.use(cors())
+app.use(express.static('build'))
 const requestLogger = (request, response, next) => {
     console.log('Method:', request.method)
     console.log('Path:  ', request.path)
@@ -52,7 +53,7 @@ const generateId = () => {
 
 app.post('/api/notes', (request, response) => {
     const body = request.body
-
+    console.log("app.post",body);
     if (!body.content) {
         return response.status(400).json({
             error: 'content missing'
